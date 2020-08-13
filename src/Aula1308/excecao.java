@@ -5,14 +5,32 @@
  */
 package Aula1308;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  *
  * @author Stéfanie
  */
 public class excecao {
     public static void main(String[] args) {
-        System.out.println("CONSEGUI!");
+        Scanner leitor = new Scanner (System.in);
         
-        System.out.println("Segundo Commit");
+        try{
+        String [] vetor = leitor.nextLine().split (" ");
+        int posicao = leitor.nextInt ();
+        
+        System.out.println(vetor [posicao]);
     }
+    
+        catch(InputMismatchException e){
+            System.out.println("Não existem indices com letras");
+        }
+        
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Indice inexistente");
+        }
+        
+        System.out.println("Fim do Programa!");
+}
 }
