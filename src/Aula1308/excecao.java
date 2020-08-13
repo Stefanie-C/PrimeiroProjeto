@@ -12,5 +12,7 @@ package Aula1308;
 public class excecao {
     public static void main(String[] args) {
         System.out.println("CONSEGUI!");
+        
+        System.out.println("Segundo Commit");
     }
 }
