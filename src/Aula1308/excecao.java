@@ -14,6 +14,18 @@ import java.util.Scanner;
  */
 public class excecao {
     public static void main(String[] args) {
+     metodo1();
+        System.out.println("TERMINANDO O PROGRAMA...");
+}
+    
+    public static void metodo1 (){
+        System.out.println("Inicio do Método 1");
+        metodo2();
+        System.out.println("Fim do Método 1");
+    }
+    public static void metodo2 (){
+        System.out.println("Inicio do Método 2!");
+        
         Scanner leitor = new Scanner (System.in);
         
         try{
@@ -31,6 +43,6 @@ public class excecao {
             System.out.println("Indice inexistente");
         }
         
-        System.out.println("Fim do Programa!");
+        System.out.println("Fim do Método 2!");
 }
 }
