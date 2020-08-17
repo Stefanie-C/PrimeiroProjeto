@@ -5,20 +5,25 @@
 
 package entidades;
 
+import Excecao.dominioExcecao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-
 public class reserva {
 
-   private int numeroreserva;
+    private int numeroreserva;
     private Date checkin;
     private Date checkout;
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 
-    public reserva(int numeroreserva, Date checkin, Date checkout) {
+    public reserva(int numeroreserva, Date checkin, Date checkout) throws dominioExcecao {
+        if (!checkout.after(checkin)){
+            throw new dominioExcecao("Erro na reserva,"
+                    + " a data de Check-out"
+                    + " precisa ser depois da data de Check-in");
+        }
         this.numeroreserva = numeroreserva;
         this.checkin = checkin;
         this.checkout = checkout;
@@ -45,20 +50,20 @@ public class reserva {
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
-    public String atualizareserva(Date checkin, Date checkout) {
+    public void atualizareserva(Date checkin, Date checkout) throws dominioExcecao{
         Date now = new Date();
         if (checkin.before(now) || checkout.before(now)) {
-            return "Erro na reserva,"
+            throw new dominioExcecao("Erro na reserva,"
                     + " as datas para atualização"
-                    + " precisam ser futuras";
+                    + " precisam ser futuras");
         } else if (!checkout.after(checkin)) {
-            return "Erro na reserva,"
+           throw new dominioExcecao("Erro na reserva,"
                     + " a data de Check-out"
-                    + " precisa ser depois da data de Check-in";
+                    + " precisa ser depois da data de Check-in");
         }
         this.checkin = checkin;
         this.checkout = checkout;
-        return null;
+        
     }
 
     @Override
